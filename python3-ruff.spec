@@ -64,6 +64,7 @@ replace-with = "vendored-sources"
 EOF
 
 %build
+export CARGO_BUILD_JOBS="%{__jobs}"
 export CARGO_HOME="$(pwd)/.cargo"
 export CARGO_OFFLINE=true
 export RUSTFLAGS="%{rpmrustflags}"
