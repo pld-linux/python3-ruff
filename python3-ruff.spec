@@ -2,7 +2,7 @@ Summary:	An extremely fast Python linter and code formatter, written in Rust
 Summary(pl.UTF-8):	Bardzo szybki linter i formater kodu dla Pythona, napisany w języku Rust
 Name:		python3-ruff
 Version:	0.17.0
-Release:	2
+Release:	3
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/ruff/
