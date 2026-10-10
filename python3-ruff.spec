@@ -56,8 +56,8 @@ EOF
 %build
 export CARGO_BUILD_JOBS="%{__jobs}"
 %ifarch %{ix86}
-# fat LTO with PLD's forced debuginfo exceeds the 32-bit rustc address space
-export CARGO_PROFILE_RELEASE_LTO=thin
+# fat and thin LTO of the ruff binary with PLD's forced debuginfo exceed the 32-bit rustc address space
+export CARGO_PROFILE_RELEASE_LTO=off
 %endif
 export CARGO_HOME="$(pwd)/.cargo"
 export CARGO_OFFLINE=true
@@ -75,8 +75,8 @@ export PYO3_CROSS_LIB_DIR=%{_libdir}
 rm -rf $RPM_BUILD_ROOT
 
 %ifarch %{ix86}
-# fat LTO with PLD's forced debuginfo exceeds the 32-bit rustc address space
-export CARGO_PROFILE_RELEASE_LTO=thin
+# fat and thin LTO of the ruff binary with PLD's forced debuginfo exceed the 32-bit rustc address space
+export CARGO_PROFILE_RELEASE_LTO=off
 %endif
 export CARGO_HOME="$(pwd)/.cargo"
 export CARGO_OFFLINE=true
