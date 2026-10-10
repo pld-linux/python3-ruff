@@ -2,7 +2,7 @@ Summary:	An extremely fast Python linter and code formatter, written in Rust
 Summary(pl.UTF-8):	Bardzo szybki linter i formater kodu dla Pythona, napisany w języku Rust
 Name:		python3-ruff
 Version:	0.17.0
-Release:	1
+Release:	2
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/ruff/
@@ -55,6 +55,10 @@ EOF
 
 %build
 export CARGO_BUILD_JOBS="%{__jobs}"
+%ifarch %{ix86}
+# fat LTO with PLD's forced debuginfo exceeds the 32-bit rustc address space
+export CARGO_PROFILE_RELEASE_LTO=thin
+%endif
 export CARGO_HOME="$(pwd)/.cargo"
 export CARGO_OFFLINE=true
 export RUSTFLAGS="%{rpmrustflags}"
@@ -70,6 +74,10 @@ export PYO3_CROSS_LIB_DIR=%{_libdir}
 %install
 rm -rf $RPM_BUILD_ROOT
 
+%ifarch %{ix86}
+# fat LTO with PLD's forced debuginfo exceeds the 32-bit rustc address space
+export CARGO_PROFILE_RELEASE_LTO=thin
+%endif
 export CARGO_HOME="$(pwd)/.cargo"
 export CARGO_OFFLINE=true
 export RUSTFLAGS="%{rpmrustflags}"
