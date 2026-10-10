@@ -1,25 +1,25 @@
 Summary:	An extremely fast Python linter and code formatter, written in Rust
 Summary(pl.UTF-8):	Bardzo szybki linter i formater kodu dla Pythona, napisany w języku Rust
 Name:		python3-ruff
-Version:	0.12.1
+Version:	0.17.0
 Release:	1
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/ruff/
 Source0:	https://files.pythonhosted.org/packages/source/r/ruff/ruff-%{version}.tar.gz
-# Source0-md5:	6fc65b457fd73b373c9dfc1a4c9d3e23
+# Source0-md5:	492ea6e3f7167c9b527758602b3c1442
 # cargo vendor-filterer --platform='*-unknown-linux-*' --tier=2
-# tar cJf ruff-%{version}-vendor.tar.xz vendor Cargo.lock
+# tar cJf ruff-%%{version}-vendor.tar.xz vendor Cargo.lock
 Source1:	ruff-%{version}-vendor.tar.xz
-# Source1-md5:	f3307c32dabcd6a6a8f43fcf14ec16e4
+# Source1-md5:	5bd0000a0fec5e8083bc5c2061aab99e
 URL:		https://pypi.org/project/ruff/
 BuildRequires:	python3-build
 BuildRequires:	python3-installer
-BuildRequires:	python3-maturin >= 1.0
+BuildRequires:	python3-maturin >= 1.9.3
 BuildRequires:	python3-maturin < 2
 BuildRequires:	python3-modules >= 1:3.7
-# 1.86 for 0.12.2
-BuildRequires:	rust >= 1.85
+# rust-version in Cargo.toml
+BuildRequires:	rust >= 1.97
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 2.044
 BuildRequires:	sed >= 4.0
@@ -51,16 +51,6 @@ replace-with = "vendored-sources"
 
 [source.vendored-sources]
 directory = "$PWD/vendor"
-
-[source.git-lsp-types]
-git = "https://github.com/astral-sh/lsp-types.git"
-rev = "3512a9f"
-replace-with = "vendored-sources"
-
-[source.git-salsa]
-git = "https://github.com/salsa-rs/salsa.git"
-rev = "09627e450566f894956710a3fd923dc80462ae6d"
-replace-with = "vendored-sources"
 EOF
 
 %build
